@@ -1,6 +1,6 @@
 import { omit } from 'lodash';
 import { Request, Response } from 'express';
-import { AccountParams } from '../utils/types';
+import { QueryParams } from '../utils/types';
 import {
   createAccount,
   getAllAccounts,
@@ -22,11 +22,11 @@ export async function createAccountHandler(req: Request, res: Response) {
 }
 
 export async function getAllAccountsHandler(
-  req: Request<any, any, any, AccountParams>,
+  req: Request<any, any, any, QueryParams>,
   res: Response
 ) {
   try {
-    const { sortCriteria, sortOrder, pageNumber, pageSize , search } = req.query;
+    const { sortCriteria, sortOrder, pageNumber, pageSize, search } = req.query;
     const response = await getAllAccounts(
       sortCriteria,
       sortOrder,

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { WishlistParams } from '../utils/types';
+import { QueryParams } from '../utils/types';
 import {
   getAllWishlists,
   getWishlist,
@@ -9,7 +9,7 @@ import {
 } from '../services/wishlist';
 
 export async function getWishlistsHandler(
-  req: Request<any, any, any, WishlistParams>,
+  req: Request<any, any, any, QueryParams>,
   res: Response
 ) {
   try {
