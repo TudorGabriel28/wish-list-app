@@ -1,0 +1,50 @@
+{
+  "name": "wish-list-app",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Tudor Dan Gabriel",
+  "scripts": {
+    "serve": "vue-cli-service serve --port 3000",
+    "build": "vue-cli-service build",
+    "generate-documentation": "jsdoc -r ./src -d ./docs",
+    "open-documentation": "open ./docs/index.html",
+    "prettier-check": "prettier --check src",
+    "prettier-fix": "prettier --write .",
+    "test-client": "jest --config='./jest.config-client.js' --runInBand",
+    "test-coverage": "jest ./test --runInBand --detectOpenHandles --coverage"
+  },
+  "dependencies": {
+    "@popperjs/core": "2.11.5",
+    "axios": "0.21.1",
+    "bootstrap": "5.0.2",
+    "dotenv": "10.0.0",
+    "jest": "24.0.0",
+    "sweetalert2": "11.1.2",
+    "vee-validate": "4.4.9",
+    "vue": "^3.0.6",
+    "vue-router": "^4.0.0-0",
+    "vuex": "4.0.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "4.5.0",
+    "@vue/cli-plugin-router": "4.5.0",
+    "@vue/cli-plugin-unit-jest": "4.5.13",
+    "@vue/cli-service": "4.5.0",
+    "@vue/compiler-sfc": "3.0.0",
+    "@vue/test-utils": "^2.0.0-0",
+    "eslint": "7.30.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-prettier": "3.4.0",
+    "flush-promises": "1.0.2",
+    "jsdoc": "3.6.7",
+    "prettier": "2.3.2",
+    "pug": "3.0.2",
+    "pug-plain-loader": "1.1.0",
+    "stylus": "0.54.8",
+    "stylus-loader": "3.0.2",
+    "vue-jest": "^5.0.0-0"
+  },
+  "license": "ISC"
+}

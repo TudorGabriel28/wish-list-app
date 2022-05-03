@@ -1,0 +1,38 @@
+@require "/colors.styl"
+@require "/utils.styl"
+
+.input, .input-small
+  border none
+  outline none
+  width 100%
+  background $background-white-input
+  padding remify(12px) 0 remify(12px) remify(10px)
+  border-radius remify(12px)
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  //box-shadow 0 remify(6px) remify(30px) $shadow-color
+  font-size remify(16px)
+  caret-color $primary-purple
+
+.input:focus, .input-small:focus
+  border 1px solid $primary-purple
+  //border 1px solid $border-gray
+.input:disabled
+  color $text-gray
+  background-color $background-disabled
+  border 1px solid $border-gray
+input::placeholder, .input-small::placeholder
+ color $text-light-gray-placeholder
+
+.input-mt
+  margin-top remify(24px)
+
+.input-small
+  // border 1px solid $primary-purple
+  padding remify(6px) remify(40px) remify(6px) remify(10px)
+
+
+
+
+
+
+

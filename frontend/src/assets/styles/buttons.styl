@@ -1,0 +1,27 @@
+@require "/colors.styl"
+@require "/utils.styl"
+
+.button, .button-small
+  border none
+  white-space nowrap
+  background-color $primary-purple
+  color white
+  padding remify(12px) remify(50px)
+  border-radius remify(12px)
+  font-family Helvetica
+  font-size remify(16px)
+  line-height remify(21px)
+  font-weight bold
+  letter-spacing 0px
+
+.button:hover
+  background-color $hover-purple
+.button:active
+  background-color $active-purple
+.button:disabled
+  background-color $background-disabled
+  color $text-gray
+  border 1px solid $border-gray
+
+.button-small
+  padding remify(7.5px) remify(35px)
