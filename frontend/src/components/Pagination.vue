@@ -1,12 +1,10 @@
  <template lang="pug">
-.row.mt-3.mb-5
-  .col-1.offset-5.pointer(@click='back', v-if='paginationParams.HasPrevious')
-    i.fas.fa-angle-double-left
-    span.mx-1 Back
-  .col-1.pointer(@click='next', v-if='paginationParams.HasNext')
-    span.mx-1 Next
-    i.fas.fa-angle-double-right
-  p {{ paginationParams }}
+.pointer(@click='back', v-if='paginationParams.hasPrevious')
+  i.fas.fa-angle-double-left
+  span.mx-1 Back
+.pointer(@click='next', v-if='paginationParams.hasNext')
+  span.mx-1 Next
+  i.fas.fa-angle-double-right
 </template>
 
 <script>
@@ -15,22 +13,24 @@ import { onMounted, ref } from 'vue';
 export default {
   name: 'Pagination',
   props: ['paginationParams'],
-  emits: ['currentPage'],
+  emits: ['pageNumber'],
   setup(props, context) {
-    const currentPage = ref();
-    currentPage.value = props.paginationParams.CurrentPage;
+    let pageNumber = ref();
+
     const back = () => {
-      if (currentPage.value > 1) {
-        currentPage.value--;
+      pageNumber.value = props.paginationParams.pageNumber;
+      if (pageNumber.value > 1) {
+        pageNumber.value--;
       }
-      context.emit('currentPage', parseInt(currentPage.value));
+      context.emit('pageNumber', pageNumber.value);
     };
 
     const next = () => {
-      if (currentPage.value < props.paginationParams.TotalCount) {
-        currentPage.value++;
+      pageNumber.value = props.paginationParams.pageNumber;
+      if (pageNumber.value < props.paginationParams.totalPages) {
+        pageNumber.value++;
       }
-      context.emit('currentPage', parseInt(currentPage.value));
+      context.emit('pageNumber', pageNumber.value);
     };
 
     return {

@@ -6,21 +6,22 @@ export async function getAllProducts(
   wishlistId?: string,
   sortCriteria: string = 'createdAt',
   sortOrder: string | number = 0,
-  currentPage: number = 1,
+  pageNumber: number = 1,
   pageSize: number = 20,
   search?: string
 ) {
   try {
     let limit;
-    const maxPageSize = 50;
-
+    const maxPageSize = 30;
+    pageSize *= 1;
+    pageNumber *= 1;
     if (pageSize > maxPageSize) {
       limit = maxPageSize;
     } else {
       limit = pageSize;
     }
 
-    const skip = (currentPage - 1) * pageSize;
+    const skip = (pageNumber - 1) * pageSize;
 
     const searchCriteria = {};
     if (search) {
@@ -52,12 +53,12 @@ export async function getAllProducts(
 
     const totalCount = await ProductModel.count();
     const totalPages = Math.ceil(totalCount / pageSize);
-    const hasNext = currentPage < totalPages;
-    const hasPrevious = currentPage !== 1;
+    const hasNext = pageNumber < totalPages;
+    const hasPrevious = pageNumber > 1;
 
     const metadata = {
       pageSize,
-      currentPage,
+      pageNumber,
       totalPages,
       hasNext,
       hasPrevious

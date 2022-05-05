@@ -5,7 +5,7 @@ export async function getAllWishlists(
   accountId: string,
   sortCriteria: string = 'createdAt',
   sortOrder: string | number = 1,
-  currentPage: number = 1,
+  pageNumber: number = 1,
   pageSize: number = 5,
   search?: string
 ) {
@@ -13,12 +13,12 @@ export async function getAllWishlists(
     let searchCriteria: any = {};
     const maxPageSize = 10;
     pageSize *= 1;
-    currentPage *= 1;
+    pageNumber *= 1;
     if (pageSize > maxPageSize) {
       pageSize = maxPageSize;
     }
 
-    const skip = (currentPage - 1) * pageSize;
+    const skip = (pageNumber - 1) * pageSize;
 
     if (search) {
       // @ts-ignore
@@ -42,12 +42,12 @@ export async function getAllWishlists(
 
     const totalCount = await WishlistModel.count();
     const totalPages = Math.ceil(totalCount / pageSize);
-    const hasNext = currentPage < totalPages;
-    const hasPrevious = currentPage !== 1;
+    const hasNext = pageNumber < totalPages;
+    const hasPrevious = pageNumber > 1;
 
     const metadata = {
       pageSize,
-      currentPage,
+      pageNumber,
       totalPages,
       hasNext,
       hasPrevious

@@ -13,15 +13,17 @@
       )
       img.product-picture.mx-auto.d-block(:src='product.picture')
       p.product-title-preview.mt-4 {{ product.name }}
+
+.d-flex.justify-content-center.mb-5.mt-3
   Pagination(
-    @currentPage='changeCurrentPage',
+    @pageNumber='changePageNumber',
     :paginationParams='paginationParams'
   )
 </template>
 
 <script>
-import { onMounted, onBeforeMount } from 'vue';
-import { useRoute } from 'vue-router';
+import { onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { productService } from '../services/productService';
 import { ref, watch } from 'vue';
 import Pagination from '../components/Pagination.vue';
@@ -30,8 +32,9 @@ export default {
   components: { Pagination },
   setup() {
     const route = useRoute();
+    const router = useRouter();
 
-    const titleList = ref(route.query.wishlistTitle);
+    let titleList = ref(route.query.wishlistTitle);
 
     const paginationParams = ref({});
     const products = ref([]);
@@ -43,16 +46,30 @@ export default {
     if (route.query.pageSize) {
       productParams.value['pageSize'] = route.query.pageSize;
     }
-    if (route.query.currentPage) {
-      productParams.value['currentPage'] = route.query.currentPage;
+    if (route.query.pageNumber) {
+      productParams.value['pageNumber'] = route.query.pageNumber;
     }
     if (route.query.search) {
       productParams.value['search'] = route.query.search;
     }
+    const updated = ref(false);
+
+    const changePageNumber = (pageNumber) => {
+      try {
+        productParams.value['pageNumber'] = pageNumber;
+        router.push({
+          name: 'Wishlist',
+          query: { ...productParams.value, wishlistTitle: titleList.value }
+        });
+        updated.value = !updated.value;
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
     onMounted(async () => await productsRequest());
 
-    watch(productParams, async () => await productsRequest());
+    watch(updated, async () => await productsRequest());
 
     const productsRequest = async () => {
       const response = await productService.getProducts(productParams.value);
@@ -62,15 +79,11 @@ export default {
       products.value = response.data;
     };
 
-    const changeCurrentPage = (page) => {
-      productParams.value.currentPage = page;
-    };
-
     return {
       titleList,
       products,
       paginationParams,
-      changeCurrentPage
+      changePageNumber
     };
   }
 };

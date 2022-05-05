@@ -45,7 +45,7 @@ export async function findAccount(
 export async function getAllAccounts(
   sortCriteria: string = 'createdAt',
   sortOrder: string | number = 1,
-  currentPage: number = 1,
+  pageNumber: number = 1,
   pageSize: number = 20,
   search?: string
 ) {
@@ -60,7 +60,7 @@ export async function getAllAccounts(
       limit = pageSize;
     }
 
-    const skip = (currentPage - 1) * pageSize;
+    const skip = (pageNumber - 1) * pageSize;
 
     if (search) {
       // @ts-ignore
@@ -81,12 +81,12 @@ export async function getAllAccounts(
 
     const totalCount = await AccountModel.count();
     const totalPages = Math.ceil(totalCount / pageSize);
-    const hasNext = currentPage < totalPages;
-    const hasPrevious = currentPage !== 1;
+    const hasNext = pageNumber < totalPages;
+    const hasPrevious = pageNumber !== 1;
 
     const metadata = {
       pageSize,
-      currentPage,
+      pageNumber,
       totalPages,
       hasNext,
       hasPrevious
