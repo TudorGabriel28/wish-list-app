@@ -8,7 +8,7 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import { onBeforeMount } from 'vue';
+import { onBeforeMount, onUnmounted } from 'vue';
 export default {
   setup() {
     const router = useRouter();
@@ -19,11 +19,17 @@ export default {
 
     onBeforeMount(() => {
       document
-        .querySelector('body')
+        .querySelector('#app')
         .setAttribute(
           'style',
-          `background-image: url('${window.location.origin}/landingpage-background.png')`
+          "background-image: url('http://localhost:3000/landingpage-background.png');"
         );
+    });
+
+    onUnmounted(() => {
+      document
+        .querySelector('#app')
+        .setAttribute('style', 'background-image: none);');
     });
 
     return { register };
@@ -32,11 +38,5 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
-body, #app
-  background-image: url('../assets/images/landingpage-background.png') !important
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
 
 </style>

@@ -1,23 +1,23 @@
 <template lang="pug">
-nav.navbar.navbar-expand-lg.navbar-light.pt-4.pb-5
-  .navbar-brand.me-5(v-if='!isLoggedIn')
+nav.navbar.navbar-expand-md.navbar-light.pt-4.pb-5
+  .navbar-brand(v-if='!isLoggedIn')
     img.navbar-logo(src='../assets/images/logo.svg')
-  .container-fluid(v-if='isLoggedIn')
+  .container-fluid.flex-wrap(v-if='isLoggedIn')
     button.navbar-toggler(
       type='button',
       data-bs-toggle='collapse',
-      data-bs-target='#navbarTogglerDemo02',
-      aria-controls='navbarTogglerDemo02',
+      data-bs-target='#navbarNav',
+      aria-controls='navbarNav',
       aria-expanded='false',
       aria-label='Toggle navigation'
     )
       span.navbar-toggler-icon
 
-    #navbarTogglerDemo02.collapse.navbar-collapse.pt-3.pt-lg-0
-      router-link.navbar-brand.me-5(:to='{ name: "HomePage" }')
-        img.navbar-logo(src='../assets/images/logo.svg')
+    router-link.navbar-brand.mx-auto(:to='{ name: "HomePage" }')
+      img.navbar-logo(src='../assets/images/logo.svg')
 
-      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+    #navbarNav.collapse.navbar-collapse.mt-3.mt-md-0.px-5
+      ul.navbar-nav.me-auto.mb-0.mb-lg-0
         li.nav-item
           router-link.nav-link.pe-4(:to='{ name: "HomePage" }') Home
         li.nav-item
@@ -25,16 +25,14 @@ nav.navbar.navbar-expand-lg.navbar-light.pt-4.pb-5
         li.nav-item
           router-link.nav-link.pe-1.text-nowrap(:to='{ name: "AddProduct" }') Add Product
 
-      form.d-flex
-        Search.px-5(@searchKeyword='searchInput')
-
+    Search.mx-auto.pt-4.pt-md-0.break-searchbar(@searchKeyword='searchInput')
     .dropdown
-      i#user-icon.fas.fa-user-circle(
+      i#user-icon.fas.fa-user-circle.ps-4(
         type='button',
         data-bs-toggle='dropdown',
         aria-expanded='false'
       )
-      ul#dropdown-menu.dropdown-menu
+      ul#dropdown-menu.dropdown-menu(aria-labelledby='navbarDropdown')
         li
           router-link.dropdown-item(:to='{ name: "Login" }') Edit profile
         li
@@ -91,29 +89,40 @@ export default {
 @require "../assets/styles/colors.styl"
 @require "../assets/styles/utils.styl"
 
+.navbar
+  padding: 0 6%
 
-.dropdown
-  position absolute
-  right: 0px
-  top: 5px
-i
+
+#user-icon
   font-size 36px
 .dropdown-menu
-  left remify(-60px)
+  left -34px !important
 .dropdown-item
   color $text-black !important
 .dropdown-item:active
   background-color $primary-purple;
   border-color: #fff;
 
-.navbar
-  padding: 0 6%
-
 .navbar-logo
-  width: 170px
+  width: remify(170px)
+  min-width: remify(170px)
 
 .container-fluid
-  position: relative
-  padding-right: remify(70px);
+  padding: 0px
+
+@media (min-width: 768px) and (max-width: 1039px) {
+  .break-searchbar {
+    order: 1
+    flex-basis: 70%
+    margin-top: remify(10px)
+  }
+}
+
+@media (max-width: 767px) {
+  .break-searchbar {
+    order: 1
+    flex-basis: 100%
+  }
+}
 
 </style>

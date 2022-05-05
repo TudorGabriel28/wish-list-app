@@ -1,9 +1,7 @@
 <template lang="pug">
-.row
-  .col-8.my-0
-    input.my-0.input-small(placeholder='Search a product', v-model='keyword')
-  .col-4
-    button.button-small.px-3(@click='searchKeyword', type='button') Search
+.d-flex
+  input.my-0.input-small(placeholder='Search a product', v-model='keyword')
+  button.button-small.px-3.ms-2(@click='searchKeyword', type='button') Search
 </template>
 
 <script>
