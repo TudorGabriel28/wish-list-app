@@ -6,7 +6,10 @@ import { sign, decode } from '../utils/jwt';
 import { findAccount } from './account';
 
 export async function createSession(accountId: string, accountAgent: string) {
-  const session = await SessionModel.create({ account: accountId, accountAgent });
+  const session = await SessionModel.create({
+    account: accountId,
+    accountAgent
+  });
 
   return session.toJSON();
 }

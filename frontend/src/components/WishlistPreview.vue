@@ -1,5 +1,5 @@
 <template lang="pug">
-h4.h4.my-3 {{ wishlist.title }}
+h4.h4.my-3.mx-4 {{ wishlist.title }}
 .row
   p.mb-4(v-if='!wishlist.products') No products added in this list so far.
   .scroll-list(v-else)
@@ -16,7 +16,7 @@ h4.h4.my-3 {{ wishlist.title }}
       p.product-title-preview.mt-3 {{ product.name }}
 
   router-link.view-more.pt-2(
-    :to='{ name: "Wishlist", query: { wishlistId: wishlist._id, wishlistTitle: wishlist.title } }'
+    :to='{ name: "Wishlist", query: { wishlistId: wishlist._id } }'
   ) View More
 </template>
 

@@ -1,10 +1,10 @@
  <template lang="pug">
-.pointer(@click='back', v-if='paginationParams.hasPrevious')
-  i.fas.fa-angle-double-left
+.pointer.pe-3(@click='back', v-if='paginationParams.hasPrevious')
+  i.fa-solid.fa-angle-left
   span.mx-1 Back
-.pointer(@click='next', v-if='paginationParams.hasNext')
+.pointer.ps-3(@click='next', v-if='paginationParams.hasNext')
   span.mx-1 Next
-  i.fas.fa-angle-double-right
+  i.fa-solid.fa-angle-right
 </template>
 
 <script>

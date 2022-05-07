@@ -23,6 +23,8 @@ export default {
     if (role) {
       this.$store.dispatch('setRole', role);
     }
+
+    apiClient.defaults.withCredentials = true;
   }
 };
 </script>
@@ -82,4 +84,8 @@ export default {
   left 0
   z-index: 2
   opacity: 0.5
+
+.here
+  text-decoration: underline !important
+  color: $primary-purple !important
 </style>

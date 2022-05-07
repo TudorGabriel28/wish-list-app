@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { get } from 'lodash';
+import dayjs from 'dayjs';
 import { validatePassword } from '../services/account';
 import {
   createSession,
@@ -14,7 +15,7 @@ export async function createAccountSessionHandler(req: Request, res: Response) {
   const account = await validatePassword(req.body);
 
   if (!account) {
-    return res.status(401).send('Invalid accountname or password');
+    return res.status(401).send('Invalid account name or password');
   }
 
   // Create a session
@@ -35,8 +36,17 @@ export async function createAccountSessionHandler(req: Request, res: Response) {
     expiresIn: process.env.REFRESH_TOKEN_TTL
   });
 
+  res.cookie('refreshTokenCookie', refreshToken, {
+    secure: true,
+    httpOnly: true,
+    expires: dayjs()
+      // @ts-ignore
+      .add(parseInt(process.env.REFRESH_TOKEN_TTL, 10), 'days')
+      .toDate()
+  });
+
   // send refresh & access token back
-  return res.send({ ...account, accessToken, refreshToken });
+  return res.send({ ...account, accessToken });
 }
 
 export async function invalidateAccountSessionHandler(

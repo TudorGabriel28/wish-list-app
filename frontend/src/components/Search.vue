@@ -1,20 +1,23 @@
 <template lang="pug">
 .d-flex
-  input.my-0.input-small(placeholder='Search a product', v-model='keyword')
+  input.my-0.input-small(:placeholder='placeholder', v-model='keyword')
   button.button-small.px-3.ms-2(@click='searchKeyword', type='button') Search
 </template>
 
 <script>
 import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 export default {
   name: 'Search',
   emits: ['searchKeyword'],
+  props: ['placeholder'],
   setup(props, context) {
     const keyword = ref('');
 
     function searchKeyword() {
       context.emit('searchKeyword', keyword.value);
     }
+
     return {
       keyword,
       searchKeyword

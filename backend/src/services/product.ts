@@ -51,7 +51,12 @@ export async function getAllProducts(
       .lean()
       .exec();
 
-    const totalCount = await ProductModel.count();
+    const totalCount = await ProductModel.find({
+      ...searchCriteria,
+      ...filterCriteria
+    })
+      .lean()
+      .count();
     const totalPages = Math.ceil(totalCount / pageSize);
     const hasNext = pageNumber < totalPages;
     const hasPrevious = pageNumber > 1;

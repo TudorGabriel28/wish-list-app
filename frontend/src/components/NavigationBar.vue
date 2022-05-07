@@ -16,16 +16,19 @@ nav.navbar.navbar-expand-md.navbar-light.pt-4.pb-5
     router-link.navbar-brand.mx-auto(:to='{ name: "HomePage" }')
       img.navbar-logo(src='../assets/images/logo.svg')
 
-    #navbarNav.collapse.navbar-collapse.mt-3.mt-md-0.px-5
+    #navbarNav.collapse.navbar-collapse.mt-3.mt-md-0.px-5.order-1.order-md-0
       ul.navbar-nav.me-auto.mb-0.mb-lg-0
         li.nav-item
           router-link.nav-link.pe-4(:to='{ name: "HomePage" }') Home
         li.nav-item
-          router-link.nav-link.pe-4(:to='{ name: "AddProduct" }') About
+          router-link.nav-link.pe-4(:to='{ name: "AddWishlist" }') Add Wishlist
         li.nav-item
           router-link.nav-link.pe-1.text-nowrap(:to='{ name: "AddProduct" }') Add Product
 
-    Search.mx-auto.pt-4.pt-md-0.break-searchbar(@searchKeyword='searchInput')
+    Search.mx-auto.pt-4.pt-md-0.break-searchbar(
+      @searchKeyword='searchInput',
+      placeholder='Search for a product'
+    )
     .dropdown
       i#user-icon.fas.fa-user-circle.ps-4(
         type='button',
@@ -43,9 +46,9 @@ nav.navbar.navbar-expand-md.navbar-light.pt-4.pb-5
 
 <script>
 import Search from './Search.vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { clickOutside } from '../directives/clickOutside';
 export default {
   name: 'NavigationBar',
@@ -56,6 +59,7 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
+    const route = useRoute();
 
     const logout = async () => {
       await store.dispatch('logout');
@@ -91,8 +95,6 @@ export default {
 
 .navbar
   padding: 0 6%
-
-
 #user-icon
   font-size 36px
 .dropdown-menu
@@ -110,7 +112,7 @@ export default {
 .container-fluid
   padding: 0px
 
-@media (min-width: 768px) and (max-width: 1039px) {
+@media (min-width: 768px) and (max-width: 1077px) {
   .break-searchbar {
     order: 1
     flex-basis: 70%
@@ -120,7 +122,7 @@ export default {
 
 @media (max-width: 767px) {
   .break-searchbar {
-    order: 1
+    order: 2
     flex-basis: 100%
   }
 }

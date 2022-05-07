@@ -14,11 +14,11 @@ class WishlistService {
   }
 
   async updateWishlist(wishlistId, wishlistData) {
-    return await apiClient.put(`/wishlist${wishlistId}`, wishlistData);
+    return await apiClient.put(`/wishlist/${wishlistId}`, wishlistData);
   }
 
   async deleteWishlist(wishlistId) {
-    await apiClient.delete(`/wishlist${wishlistId}`);
+    await apiClient.delete(`/wishlist/${wishlistId}`);
   }
 }
 

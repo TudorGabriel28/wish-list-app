@@ -1,4 +1,5 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import accountRouter from '../routes/account';
 import sessionRouter from '../routes/session';
 import deserializeAccount from '../middlewares/deserializeAccount';
@@ -9,14 +10,16 @@ import productRouter from '../routes/product';
 const cors = require('cors');
 
 const corsOptions = {
-  origin: '*',
-  exposedHeaders: ['X-Pagination', 'Authorization']
+  origin: 'http://localhost:3000',
+  credentials: true,
+  exposedHeaders: ['X-Pagination', 'x-access-token']
 };
 
 const app = express();
 
 app.use(cors(corsOptions));
 // middleware
+app.use(cookieParser());
 app.use(deserializeAccount);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

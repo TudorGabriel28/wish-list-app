@@ -13,7 +13,7 @@ const deserializeAccount = async (
     ''
   );
 
-  const refreshToken = get(req, 'headers.x-refresh');
+  const refreshToken = req.cookies.refreshTokenCookie;
 
   if (!accessToken) return next();
 

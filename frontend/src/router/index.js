@@ -99,6 +99,13 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/add-wishlist',
+    name: 'AddWishlist',
+    component: () =>
+      import(/* webpackChunkName: "AddWishlist" */ '../views/AddWishlist.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/:pathMatch(.*)*',
     component: () =>
       import(/* webpackChunkName: "PageNotFound" */ '../views/PageNotFound.vue')

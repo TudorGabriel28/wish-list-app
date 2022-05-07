@@ -10,7 +10,16 @@ export const apiClient = axios.create({
 });
 
 apiClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    const newAccessToken = response.headers['x-access-token'];
+    if (newAccessToken) {
+      localStorage.setItem('token', newAccessToken);
+      apiClient.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${newAccessToken}`;
+    }
+    return response;
+  },
   async (error) => {
     if (error.response && error.response.status === 401) {
       await store.dispatch('logout');

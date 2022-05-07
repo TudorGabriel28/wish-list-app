@@ -6,12 +6,12 @@ export async function getAllWishlists(
   sortCriteria: string = 'createdAt',
   sortOrder: string | number = 1,
   pageNumber: number = 1,
-  pageSize: number = 5,
+  pageSize: number = 4,
   search?: string
 ) {
   try {
     let searchCriteria: any = {};
-    const maxPageSize = 10;
+    const maxPageSize = 5;
     pageSize *= 1;
     pageNumber *= 1;
     if (pageSize > maxPageSize) {
