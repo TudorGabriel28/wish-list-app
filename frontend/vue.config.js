@@ -10,8 +10,5 @@ module.exports = {
       template: 'public/index.html',
       filename: 'index.html'
     }
-  },
-  devServer: {
-    proxy: 'https://myflixapi.azurewebsites.net'
   }
 };
