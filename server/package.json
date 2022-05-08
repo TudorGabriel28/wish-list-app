@@ -2,9 +2,9 @@
   "name": "wishlist",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
-    "start": "node ./src/app.ts",
+    "start": "ts-node ./src/app.ts",
     "dev": "nodemon ./src/app.ts"
   },
   "author": "Tudor Dan Gabriel",

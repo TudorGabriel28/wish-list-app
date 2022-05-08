@@ -8,7 +8,7 @@ async function startServer() {
     await mongooseLoader();
     console.log('Mongoose connected.');
 
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT || 5000, () => {
       console.log(`Server listening at http://localhost:${process.env.PORT}`);
     });
   } catch (error) {
