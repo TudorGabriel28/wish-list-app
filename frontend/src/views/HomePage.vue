@@ -46,7 +46,7 @@ export default {
     const paginationParams = ref({});
     const updated = ref(false);
     const sortCriteria = ref('createdAt');
-    const sortOrder = ref('asc');
+    const sortOrder = ref('desc');
 
     if (route.query.pageSize) {
       wishlistsParams.value['pageSize'] = route.query.pageSize;

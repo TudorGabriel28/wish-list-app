@@ -6,7 +6,8 @@ import {
   createWishlist,
   editWishlist,
   deleteWishlist,
-  getWishlistsTitle
+  getWishlistsTitle,
+  getWishlistWithAllProducts
 } from '../services/wishlist';
 
 export async function getWishlistsHandler(
@@ -49,6 +50,19 @@ export async function getWishlistHandler(req: Request, res: Response) {
   try {
     const { wishlistId } = req.params;
     const wishlist = await getWishlist({ _id: wishlistId });
+    if (!wishlist) {
+      return res.sendStatus(404);
+    }
+    return res.status(200).send(wishlist);
+  } catch (error: any) {
+    return res.status(400).send(error.message);
+  }
+}
+
+export async function exportWishlistHandler(req: Request, res: Response) {
+  try {
+    const { wishlistId } = req.params;
+    const wishlist = await getWishlistWithAllProducts({ _id: wishlistId });
     if (!wishlist) {
       return res.sendStatus(404);
     }

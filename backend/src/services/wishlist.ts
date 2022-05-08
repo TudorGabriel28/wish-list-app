@@ -73,6 +73,19 @@ export async function getWishlist(
   return wishlist;
 }
 
+export async function getWishlistWithAllProducts(
+  query: FilterQuery<WishlistDocument>,
+  projection: Object = {},
+  options: Object = {}
+) {
+  const wishlist = await WishlistModel.findOne(query, projection, options)
+    .populate({
+      path: 'products'
+    })
+    .lean();
+  return wishlist;
+}
+
 export async function createWishlist(input: Object, accountId: string) {
   try {
     return await WishlistModel.create({ ...input, account: accountId });

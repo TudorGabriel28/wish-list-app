@@ -1,18 +1,28 @@
 <template lang="pug">
 .col-10.offset-1
   .d-flex.justify-content-between.mb-4.flex-wrap
-    .titleList
+    .titleList.d-flex.align-items-center.px-5
       .d-flex.flex-row.flex-nowrap.align-items-center(v-if='!edit')
         h3.h3 {{ titleList }}
-        i.fa-solid.fa-pen-to-square.hide.ps-2(@click='edit = true')
-      .d-flex.flex-row.flex-nowrap.align-items-center(v-if='edit')
+        i.fa-solid.fa-pen-to-square.ps-3(
+          @click='edit = true',
+          alt='Edit wishlist',
+          v-if='isSearch'
+        )
+      .d-flex.flex-row.flex-nowrap.align-items-center(v-if='edit && isSearch')
         input.input-small.col-md-4(
           placeholder='Enter title',
           v-model='titleList'
         )
         i.fa-solid.fa-check.ps-2(@click='changeTitle')
-        a.delete-wishlist.mx-auto(href='#', @click='deleteWishlist') Delete wishlist
-    .d-flex.flex-wrap
+        a.delete-wishlist.mx-auto.ps-3(href='#', @click='deleteWishlist') Delete wishlist
+      a.fa-solid.fa-file-export.px-3(
+        title='Export wishlist',
+        type='button',
+        @click='exportWishlist',
+        v-if='isSearch'
+      )
+    .d-flex.flex-wrap.justify-content-center.align-items-center
       .px-3.d-flex.flex-row.align-items-center.my-3.my-sm-0
         h6.text-nowrap.pe-2 Sort by:
         select.form-select(aria-label='sortCriteria', v-model='sortCriteria')
@@ -54,6 +64,7 @@ import { ref, watch } from 'vue';
 import Pagination from '../components/Pagination.vue';
 import { wishlistService } from '@/services/wishlistService';
 import { Toast } from '../utils/toastAlert';
+import download from 'downloadjs';
 
 export default {
   components: { Pagination },
@@ -64,13 +75,14 @@ export default {
     const paginationParams = ref({});
     const products = ref([]);
     const titleList = ref();
-
+    const isSearch = ref(false);
     const sortCriteria = ref('createdAt');
     const sortOrder = ref('asc');
 
     const productParams = ref({});
     if (route.query.wishlistId) {
       productParams.value['wishlistId'] = route.query.wishlistId;
+      isSearch.value = true;
     }
     if (route.query.pageSize) {
       productParams.value['pageSize'] = route.query.pageSize;
@@ -172,6 +184,17 @@ export default {
       }
     };
 
+    const exportWishlist = async () => {
+      const response = await wishlistService.exportWishlist(
+        productParams.value.wishlistId
+      );
+      download(
+        JSON.stringify(response.data),
+        `${titleList.value}.json`,
+        'plain/text'
+      );
+    };
+
     watch(
       () => route.params,
       () => {
@@ -189,7 +212,9 @@ export default {
       edit,
       deleteWishlist,
       sortCriteria,
-      sortOrder
+      sortOrder,
+      exportWishlist,
+      isSearch
     };
   }
 };

@@ -112,7 +112,7 @@ export default {
 .container-fluid
   padding: 0px
 
-@media (min-width: 768px) and (max-width: 1077px) {
+@media (min-width: 768px) and (max-width: 1092px) {
   .break-searchbar {
     order: 1
     flex-basis: 70%

@@ -20,6 +20,10 @@ class WishlistService {
   async deleteWishlist(wishlistId) {
     await apiClient.delete(`/wishlist/${wishlistId}`);
   }
+
+  async exportWishlist(wishlistId) {
+    return await apiClient.get(`/wishlist/export/${wishlistId}`);
+  }
 }
 
 export const wishlistService = new WishlistService();
