@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["PageNotFound"],{a5b5:function(t,e,n){"use strict";n.r(e);var c=n("5c40"),o={class:"center-container"},a=Object(c["j"])("h2",{class:"h2 d-flex align-items-center justify-content-center","data-test-id":"not-found-title"},"Page not found. :(",-1);function s(t,e){return Object(c["y"])(),Object(c["e"])("div",o,[a])}const i={};i.render=s;e["default"]=i}}]);
+//# sourceMappingURL=PageNotFound.bfa2d787.js.map
