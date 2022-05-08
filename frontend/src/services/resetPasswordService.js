@@ -5,8 +5,8 @@ class ResetPasswordService {
     await apiClient.post('/reset-password/', email);
   }
 
-  async validateResetPasswordToken(resetPasswordToken) {
-    await apiClient.get(`/reset-password/${resetPasswordToken}`);
+  async validateResetPasswordToken(resetPasswordToken, passwords) {
+    await apiClient.put(`/reset-password/${resetPasswordToken}`, passwords);
   }
 }
 

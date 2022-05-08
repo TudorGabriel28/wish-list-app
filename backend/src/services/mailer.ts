@@ -11,7 +11,7 @@ export async function sendAccountActivationMail(account: AccountDocument) {
     to: account.email,
     subject: 'Account activation',
     // eslint-disable-next-line no-underscore-dangle
-    text: `http://localhost:3000/api/accounts/activate/${account._id}`
+    text: `${process.env.CLIENT_BASE_URL}/verify-email/${account._id}`
   };
 
   await mailer(mailContent);
@@ -25,7 +25,7 @@ export async function sendResetPasswordMail(
     from: process.env.MAILER_USER,
     to: account.email,
     subject: 'Reset password',
-    text: `http://localhost:3000/accounts/reset-password/${tokenId}`
+    text: `${process.env.CLIENT_BASE_URL}/reset-password/${tokenId}`
   };
 
   await mailer(mailContent);

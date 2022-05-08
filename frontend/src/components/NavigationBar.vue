@@ -1,6 +1,6 @@
 <template lang="pug">
 nav.navbar.navbar-expand-md.navbar-light.pt-4.pb-5
-  .navbar-brand(v-if='!isLoggedIn')
+  router-link.navbar-brand(:to='{ name: "Login" }' v-if='!isLoggedIn')
     img.navbar-logo(src='../assets/images/logo.svg')
   .container-fluid.flex-wrap(v-if='isLoggedIn')
     button.navbar-toggler(

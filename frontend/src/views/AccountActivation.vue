@@ -1,13 +1,11 @@
 <template lang="pug">
-h2.h2.d-flex.align-items-center.justify-content-center(data-test-id='title') Your account has been activated.
-  h4 Go to
-    router-link(:to='{ name: "Login" }') login
 </template>
 
 <script>
 import { useRoute, useRouter } from 'vue-router';
 import { accountService } from '../services/accountService';
 import { onMounted } from 'vue';
+import { Toast } from '../utils/toastAlert';
 
 export default {
   setup() {
@@ -17,14 +15,20 @@ export default {
     onMounted(async () => {
       try {
         await accountService.activateAccount(route.params.token);
-      } catch (error) {
+        Toast.fire({
+          icon: 'success',
+          title: 'Your account has been activated successfully'
+        });
         router.push({
-          name: 'Login',
-          params: {
-            alert: true,
-            alertMessage: 'Link has expired.',
-            alertIcon: 'error'
-          }
+          name: 'Login'
+        });
+      } catch (error) {
+        Toast.fire({
+          icon: 'error',
+          title: 'Link has expired'
+        });
+        router.push({
+          name: 'Login'
         });
       }
     });

@@ -76,7 +76,7 @@ export default {
       } catch (error) {
         Toast.fire({
           icon: 'error',
-          title: error.response.data.message
+          title: error.response.data
         });
       }
     };

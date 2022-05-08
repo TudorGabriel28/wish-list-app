@@ -49,7 +49,7 @@ const routes = [
     meta: { forVisitor: true }
   },
   {
-    path: '/reset-password/:id/:token',
+    path: '/reset-password/:token',
     name: 'ResetPassword',
     component: () =>
       import(

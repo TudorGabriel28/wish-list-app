@@ -26,25 +26,9 @@ class AccountService {
   }
 
   async activateAccount(accountId) {
-    await apiClient.post(`account/verify-email/${accountId}`);
+    await apiClient.get(`/account/verify-email/${accountId}`);
   }
 
-  async createResetPasswordToken(email) {
-    await apiClient.post('/api/users/forgot-password', email);
-  }
-
-  async validateResetPasswordToken(params) {
-    await apiClient.get(
-      `/api/users/reset-password/${params.userId}/${params.token}`
-    );
-  }
-
-  async updatePassword(params, password) {
-    await apiClient.put(
-      `/api/users/reset-password/${params.userId}/${params.token}`,
-      password
-    );
-  }
 }
 
 export const accountService = new AccountService();

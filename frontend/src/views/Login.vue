@@ -1,6 +1,6 @@
 <template lang="pug">
 .row
-  .col-10.offset-1.col-sm-8.offset-sm-2.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+  .col-10.offset-1.col-sm-8.offset-sm-2.col-md-6.offset-md-3.col-xl-4.offset-xl-4.px-xxl-5
     .center-container.mx-lg-5.mx-xl-0
       h3.h3.title.pb-3(data-test-id='title') Sign In
       form(data-test-id='login-form', @submit.prevent='loginUser')
@@ -54,12 +54,12 @@ export default {
         if (statusCode == '409') {
           Toast.fire({
             icon: 'info',
-            title: error.response.data.message
+            title: error.response.data
           });
         } else {
           Toast.fire({
             icon: 'error',
-            title: error.response.data.message
+            title: error.response.data
           });
         }
       }

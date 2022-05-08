@@ -4,7 +4,8 @@ require('dotenv').config();
 export default async function mailer(info: Object) {
   try {
     const transporter = nodemailer.createTransport({
-      host: 'smtp.live.com',
+      host: process.env.MAILER_HOST,
+      port: process.env.MAILER_PORT,
       auth: {
         user: process.env.MAILER_USER,
         pass: process.env.MAILER_PASSWORD
@@ -13,6 +14,7 @@ export default async function mailer(info: Object) {
 
     await transporter.sendMail(info);
   } catch (error: any) {
+    console.log(error);
     throw new Error(error);
   }
 }

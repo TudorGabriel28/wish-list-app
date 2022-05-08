@@ -24,22 +24,3 @@ export default async function ogScraper(url: string, userAgent: string) {
     url: ogUrl
   };
 }
-
-/* const metascraper = require('metascraper')([
-  require('metascraper-description')(),
-  require('metascraper-image')(),
-  require('metascraper-title')(),
-  require('metascraper-url')()
-]);
-const got = require('got');
-
-export default async function ogScraper(targetUrl: string, userAgent: string) {
-  const { body: html, url } = await got(targetUrl, {
-    headers: { 'User-Agent': userAgent }
-  });
-  console.log(html);
-  const metadata = await metascraper({ html, url });
-  console.log(metadata);
-  return { metadata };
-}
- */
