@@ -10,7 +10,7 @@ import productRouter from '../routes/product';
 const cors = require('cors');
 
 const corsOptions = {
-  origin: process.env.CLIENT_BASE_URL,
+  origin: '*',
   credentials: true,
   exposedHeaders: ['X-Pagination', 'x-access-token']
 };
