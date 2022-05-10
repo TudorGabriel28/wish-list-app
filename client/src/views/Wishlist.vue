@@ -9,19 +9,24 @@
           alt='Edit wishlist',
           v-if='isSearch'
         )
+        a.fa-solid.fa-file-export.mx-3(
+        title='Export wishlist',
+        type='button',
+        @click='exportWishlist',
+        v-if='isSearch'
+        )
       .d-flex.flex-row.flex-nowrap.align-items-center(v-if='edit && isSearch')
-        input.input-small.col-md-4.mx-3(
+        input.input-small.col-md-4(
           placeholder='Enter title',
           v-model='titleList'
         )
         i.fa-solid.fa-check.ps-2(@click='changeTitle')
         a.delete-wishlist.mx-auto.ps-3.text-nowrap(href='#', @click='deleteWishlist') Delete wishlist
-      a.fa-solid.fa-file-export.mx-3(
-        title='Export wishlist',
-        type='button',
-        @click='exportWishlist',
-        v-if='isSearch'
-      )
+        a.fa-solid.fa-file-export.mx-3(
+          title='Export wishlist',
+          type='button',
+          @click='exportWishlist'
+        )
     .d-flex.flex-wrap.justify-content-center.align-items-center
       .px-3.d-flex.flex-row.align-items-center.my-3.my-sm-0
         h6.text-nowrap.pe-2 Sort by:
