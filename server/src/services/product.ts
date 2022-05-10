@@ -7,7 +7,7 @@ export async function getAllProducts(
   sortCriteria: string = 'createdAt',
   sortOrder: string | number = 0,
   pageNumber: number = 1,
-  pageSize: number = 20,
+  pageSize: number = 24,
   search?: string
 ) {
   try {
