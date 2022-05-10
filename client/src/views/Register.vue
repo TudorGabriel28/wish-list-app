@@ -106,7 +106,7 @@ export default {
 
           Toast.fire({
             icon: 'success',
-            title: 'Register complete'
+            title: 'Register complete. Check your email to activate account.'
           });
         } catch (error) {
           Toast.fire({
