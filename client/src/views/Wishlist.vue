@@ -15,8 +15,8 @@
           v-model='titleList'
         )
         i.fa-solid.fa-check.ps-2(@click='changeTitle')
-        a.delete-wishlist.mx-auto.ps-3(href='#', @click='deleteWishlist') Delete wishlist
-      a.fa-solid.fa-file-export.px-3(
+        a.delete-wishlist.mx-auto.ps-3.text-nowrap(href='#', @click='deleteWishlist') Delete wishlist
+      a.fa-solid.fa-file-export.mx-3(
         title='Export wishlist',
         type='button',
         @click='exportWishlist',

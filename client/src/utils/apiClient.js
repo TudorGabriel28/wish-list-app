@@ -4,7 +4,7 @@ import store from '../store';
 import { Toast } from './toastAlert';
 
 export const apiClient = axios.create({
-  baseURL: 'https://wish-list-server.herokuapp.com/api',
+  baseURL: `${process.env.VUE_APP_ROOT_API}/api`,
   timeout: 5000,
   headers: { 'Content-Type': 'application/json' }
 });
