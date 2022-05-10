@@ -18,6 +18,10 @@ export async function createAccountSessionHandler(req: Request, res: Response) {
     return res.status(401).send('Invalid account name or password');
   }
 
+  if(account.active === false) {
+    return res.status(401).send('Account is not activated.');
+  }
+
   // Create a session
   const session = await createSession(
     // eslint-disable-next-line no-underscore-dangle

@@ -10,6 +10,10 @@ const requiresAuth =
       return res.sendStatus(401);
     }
 
+    if (account.active === false) {
+      return res.status(401).send('Account is not activated.');
+    }
+
     if (role !== undefined && role !== account.role) {
       return res.sendStatus(403);
     }
