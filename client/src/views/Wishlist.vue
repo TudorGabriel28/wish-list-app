@@ -10,7 +10,7 @@
           v-if='isSearch'
         )
       .d-flex.flex-row.flex-nowrap.align-items-center(v-if='edit && isSearch')
-        input.input-small.col-md-4(
+        input.input-small.col-md-4.mx-3(
           placeholder='Enter title',
           v-model='titleList'
         )

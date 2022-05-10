@@ -15,11 +15,11 @@ export async function createAccountSessionHandler(req: Request, res: Response) {
   const account = await validatePassword(req.body);
 
   if (!account) {
-    return res.status(401).send('Invalid account name or password');
+    return res.status(401).send('Invalid email or password');
   }
 
   if(account.active === false) {
-    return res.status(401).send('Account is not activated.');
+    return res.status(401).send('Account is not activated');
   }
 
   // Create a session
